@@ -156,7 +156,7 @@
           {% endif %}
           {% endwith %}
 
-          {% if session.get('firstname') != 'Admin' and session.get('lastname') != Admin %}
+
           <form action="" method="post">
             {{ form.hidden_tag() }}
             <div class="form-group">
@@ -171,11 +171,9 @@
               {{ form.submit(class="btn btn-outline-info") }}
             </div>
           </form>
-          {% endif %}
 
-
-          {% if session.get('firstname') == 'Admin' and session.get('lastname') == 'Admin' %}
-          {% for i in messagelist|reverse %}
+          
+          {% for i in chatlist|reverse %}
           <h3>Name: {{ i['user'] }}</h3>
           <p>Subject: {{ i['subject'] }}</p>
           <p>Content: {{ i['feedback'] }}</p>
@@ -184,7 +182,7 @@
           {% endif %}
           <hr class="col-11">
           {% endfor %}
-          {% endif %}
+
         </div>
 
       </div>

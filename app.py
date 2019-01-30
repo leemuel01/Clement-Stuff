@@ -33,6 +33,9 @@ class RequiredIf(object):
 import Form
 from Form import Feedback
 
+
+
+
 @app.route("/feedback", methods=['GET', 'POST'])
 def feedback():
     form = Feedback()
@@ -59,6 +62,34 @@ def feedback():
         # return redirect(url_for('index'))
         # db.close()
     return render_template("feedback.html", form=form, messagelist=messagelist)
+
+@app.route("/chat", methods=['GET', 'POST'])
+def chat():
+
+    form = Feedback()
+    userList = {}
+    chatlist = {}
+    db = shelve.open('storage.db')
+    chatlist = db['chatlist']
+
+    userList = db['Users']
+    id = session['id']
+    if form.validate_on_submit():
+
+        user = userList.get(id)
+        feedback = {'user': session.get('firstname'),
+                    'subject': form.subject.data,
+                    "feedback": form.content.data,
+                    'time': str(datetime.now().strftime('%B %d %H:%M'))}
+
+        print(feedback['time'])
+        chatlist.append(feedback)
+        print(chatlist)
+        db['chatlist'] = chatlist
+        db.close()
+        # return redirect(url_for('index'))
+        # db.close()
+    return render_template("chat.html", form=form, chatlist=chatlist)
 
 #jerome's part (i added it in)
 @app.route('/topup', methods=['GET', 'POST'])
