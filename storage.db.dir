@@ -1,4 +1,5 @@
 'Account', (0, 6)
-'Users', (9728, 1306)
+'Users', (9728, 1308)
 'Transactions', (17920, 3802)
-'messagelist', (22528, 369)
+'messagelist', (24064, 621)
+'chatlist', (23552, 246)
