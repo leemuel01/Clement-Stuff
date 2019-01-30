@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+{% from "added/_formhelper.html" import render_field %}
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CIRDE-Login</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template-->
+    <link href="static/css/sb-admin.css" rel="stylesheet">
+
+  </head>
+
+  <body class="bg-dark" background="static/images/CIRDE1.jpg">
+
+    <div class="container">
+      <div class="card card-login mx-auto mt-5">
+        <div class="card-header">Welcome to CIRDE</div>
+        <div class="card-body">
+          {% macro render_field(field) %}
+
+  {{ field.label }}
+  {{ field(**kwargs)|safe }}
+  {% if field.errors %}
+    {% for error in field.errors %}
+      <span class="help-inline">{{ error }}</span>
+    {% endfor %}
+  {% endif %}
+{% endmacro %}
+
+          <form method="POST" action="">
+        <div class="form-group">
+
+            {{ render_field(form.email, class_="form-control") }}
+        </div>
+         <div class="form-group">
+
+            {{ render_field(form.password, class_="form-control" ) }}
+        </div>
+        <input type="submit" value="Log in" class="btn btn-info"/>
+          </form>
+
+          <div class="text-center">
+            <a class="d-block small mt-3" href="register">Register an Account</a>
+            <a class="d-block small" href="forgot">Forgot Password?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
+  </body>
+
+</html>
